@@ -1,51 +1,29 @@
-# Analisador Sintático LL(1)
+# Analisador LL(1) em Dart
 
-Este projeto é uma implementação de um analisador sintático LL(1) em Dart. O analisador utiliza uma tabela de análise LL(1) definida em um arquivo CSV para analisar uma entrada e determinar se a entrada está de acordo com a gramática especificada.
+Este projeto é um analisador LL(1) implementado em Dart. O analisador verifica se uma entrada é aceita ou rejeitada com base em uma tabela de análise LL(1) definida em um arquivo CSV.
 
-# Estrutura do Projeto
+## Estrutura do Projeto
 
-1. **lexer.dart**: Define a classe Token e a função tokenize para dividir a entrada em tokens.
-2. **parser.dart**: Define as classes LL1Entry, LL1Table e as funções loadTable e parseInput para carregar a tabela de análise e realizar a análise sintática.
-3. **interpreter.dart**: Define a classe LL1Interpreter que orquestra a execução do analisador sintático.
-4. **main.dart**: Ponto de entrada do programa, responsável por receber os arquivos de entrada e tabela de análise, e executar o interpretador.
+- **`parser.dart`**: Implementa a lógica do analisador LL(1) e o carregamento da tabela de análise.
+- **`lexer.dart`**: Contém a função de tokenização da entrada.
+- **`interpreter.dart`**: Executa o analisador LL(1) usando a tabela e o arquivo de entrada.
+- **`main.dart`**: Ponto de entrada para a execução do analisador.
 
-# Uso
+## Gramática
 
-**Pré-requisitos**
+A gramática usada no analisador LL(1) é:
 
-Dart SDK instalado.
-
-**Execução**
-
-'''
-dart run main.dart <arquivo_tabela_csv> <arquivo_entrada>
-'''
-
-# Gramatica
 '''
 E  -> T E'
 E' -> + T E' | - T E' | ε
 T  -> F T'
 T' -> * F T' | ε
-F  -> ( E ) | id 
+F  -> ( E ) | id
 '''
-## Cálculo dos Conjuntos FIRST e FOLLOW
-
-### Conjunto FIRST
-
-| Produção       | FIRST                | FOLLOW               |
-|----------------|----------------------|----------------------|
-| E -> T E'      | { (, id }            | { $, ) }             |
-| E' -> + T E'   | { +, -, ε }          | { $, ), +, - }       |
-| E' -> - T E'   |                      |                      |
-| E' -> ε        |                      |                      |
-| T -> F T'      | { (, id }            | { +, -, $, ) }       |
-| T' -> * F T'   | { *, ε }             | { +, -, $, ) }       |
-| T' -> ε        |                      |                      |
-| F -> ( E )     | { (, id }            | { *, +, -, $, ) }    |
-| F -> id        |                      |                      |
 
 ## Tabela de Análise LL(1)
+
+A tabela LL(1) para a gramática é a seguinte:
 
 | Não Terminal | Terminal | Produção   |
 |--------------|----------|------------|
@@ -62,3 +40,64 @@ F  -> ( E ) | id
 | T'           | $        | ε          |
 | F            | (        | ( E )      |
 | F            | id       | id         |
+
+## Conjunto FIRST e FOLLOW
+
+| Produção       | FIRST                | FOLLOW               |
+|----------------|----------------------|----------------------|
+| E -> T E'      | { (, id }            | { $, ) }             |
+| E' -> + T E'   | { +, -, ε }          | { $, ), +, - }       |
+| E' -> - T E'   |                      |                      |
+| E' -> ε        |                      |                      |
+| T -> F T'      | { (, id }            | { +, -, $, ) }       |
+| T' -> * F T'   | { *, ε }             | { +, -, $, ) }       |
+| T' -> ε        |                      |                      |
+| F -> ( E )     | { (, id }            | { *, +, -, $, ) }    |
+| F -> id        |                      |                      |
+
+## Execução
+
+Para executar o analisador LL(1), utilize o seguinte comando:
+'''
+```bash``` 
+dart run bin/main.dart assets/tabela.csv assets/entrada.txt
+'''
+
+## Exemplos
+
+### Exemplo Aceito
+
+#### Arquivo de Entrada: `entrada.txt`
+
+Conteúdo do arquivo `entrada.txt`:
+'''
+```text```
+id + id * id
+'''
+
+#### Saída 
+
+'''
+```text```
+Entrada aceita com sucesso.
+'''
+
+### Exemplo Rejeitado
+
+#### Arquivo de Entrada: entrada.txt
+
+'''
+```text```
+id + id * 
+'''
+
+#### Saída
+
+'''
+```text```
+Erro: Produção não encontrada para 'F' com '$'
+O símbolo '$' é usado como marcador para indicar o final da entrada
+Esperava mais símbolos após o '*'
+
+Entrada não aceita, ocorreu um erro.
+'''
