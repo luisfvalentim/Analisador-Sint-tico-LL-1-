@@ -13,13 +13,13 @@ Este projeto é um analisador LL(1) implementado em Dart. O analisador verifica 
 
 A gramática usada no analisador LL(1) é:
 
-'''
+```
 E  -> T E'
 E' -> + T E' | - T E' | ε
 T  -> F T'
 T' -> * F T' | ε
 F  -> ( E ) | id
-'''
+```
 
 ## Tabela de Análise LL(1)
 
