@@ -65,32 +65,32 @@ Para executar o analisador LL(1), utilize o seguinte comando:
 dart run bin/main.dart assets/tabela.csv assets/entrada.txt
 ```
 
-# Exemplos
+## Exemplos
 
-## Exemplo Aceito
+1- **Exemplo Aceito**
 
-#### Arquivo de Entrada: `entrada.txt`
+**Arquivo de Entrada**: `entrada.txt`
 
 
 ```
 id + id * id
 ```
 
-#### Saída 
+**Saída** 
 
 ```
 Entrada aceita com sucesso.
 ```
 
-## Exemplo Rejeitado
+2- **Exemplo Rejeitado**
 
-#### Arquivo de Entrada: entrada.txt
+**Arquivo de Entrada**: entrada.txt
 
 ```
 id + id * 
 ```
 
-#### Saída
+**Saída**
 
 ```
 Erro: Produção não encontrada para 'F' com '$'
