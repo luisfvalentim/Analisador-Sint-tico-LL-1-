@@ -65,13 +65,12 @@ Para executar o analisador LL(1), utilize o seguinte comando:
 dart run bin/main.dart assets/tabela.csv assets/entrada.txt
 ```
 
-## Exemplos
+# Exemplos
 
-### Exemplo Aceito
+## Exemplo Aceito
 
 #### Arquivo de Entrada: `entrada.txt`
 
-Conteúdo do arquivo `entrada.txt`:
 
 ```
 id + id * id
@@ -83,7 +82,7 @@ id + id * id
 Entrada aceita com sucesso.
 ```
 
-### Exemplo Rejeitado
+## Exemplo Rejeitado
 
 #### Arquivo de Entrada: entrada.txt
 
