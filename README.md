@@ -60,7 +60,7 @@ A tabela LL(1) para a gramática é a seguinte:
 Para executar o analisador LL(1), utilize o seguinte comando:
 
 ```
-```bash``` 
+bash``` 
 dart run bin/main.dart assets/tabela.csv assets/entrada.txt
 ```
 
@@ -73,14 +73,14 @@ dart run bin/main.dart assets/tabela.csv assets/entrada.txt
 Conteúdo do arquivo `entrada.txt`:
 
 ```
-```text```
+text```
 id + id * id
 ```
 
 #### Saída 
 
 ```
-```text```
+text```
 Entrada aceita com sucesso.
 ```
 
@@ -89,14 +89,14 @@ Entrada aceita com sucesso.
 #### Arquivo de Entrada: entrada.txt
 
 ```
-```text```
+text```
 id + id * 
 ```
 
 #### Saída
 
 ```
-```text```
+text```
 Erro: Produção não encontrada para 'F' com '$'
 O símbolo '$' é usado como marcador para indicar o final da entrada
 Esperava mais símbolos após o '*'
