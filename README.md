@@ -8,6 +8,8 @@ Este projeto é um analisador LL(1) implementado em Dart. O analisador verifica 
 - **`lexer.dart`**: Contém a função de tokenização da entrada.
 - **`interpreter.dart`**: Executa o analisador LL(1) usando a tabela e o arquivo de entrada.
 - **`main.dart`**: Ponto de entrada para a execução do analisador.
+- **`entrada.txt`**: Arquivo de texto que contém a expressão a ser analisada pelo analisador LL(1). Este arquivo deve ser fornecido ao executar o programa para verificar se a entrada é aceita ou rejeitada.
+- **`tabela.csv`**: Arquivo CSV que define a tabela de análise LL(1). Contém as produções da gramática e é usado pelo analisador para determinar a aceitação ou rejeição da entrada.
 
 ## Gramática
 
@@ -60,7 +62,6 @@ A tabela LL(1) para a gramática é a seguinte:
 Para executar o analisador LL(1), utilize o seguinte comando:
 
 ```
-bash``` 
 dart run bin/main.dart assets/tabela.csv assets/entrada.txt
 ```
 
@@ -73,14 +74,12 @@ dart run bin/main.dart assets/tabela.csv assets/entrada.txt
 Conteúdo do arquivo `entrada.txt`:
 
 ```
-text```
 id + id * id
 ```
 
 #### Saída 
 
 ```
-text```
 Entrada aceita com sucesso.
 ```
 
@@ -89,14 +88,12 @@ Entrada aceita com sucesso.
 #### Arquivo de Entrada: entrada.txt
 
 ```
-text```
 id + id * 
 ```
 
 #### Saída
 
 ```
-text```
 Erro: Produção não encontrada para 'F' com '$'
 O símbolo '$' é usado como marcador para indicar o final da entrada
 Esperava mais símbolos após o '*'
