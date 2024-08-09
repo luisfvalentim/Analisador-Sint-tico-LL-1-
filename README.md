@@ -17,4 +17,48 @@ Dart SDK instalado.
 
 **Execução**
 
-dart run bin/main.dart assets/tabela.csv assets/entrada.txt
+'''
+dart run main.dart <arquivo_tabela_csv> <arquivo_entrada>
+'''
+
+# Gramatica
+'''
+E  -> T E'
+E' -> + T E' | - T E' | ε
+T  -> F T'
+T' -> * F T' | ε
+F  -> ( E ) | id 
+'''
+## Cálculo dos Conjuntos FIRST e FOLLOW
+
+### Conjunto FIRST
+
+| Produção       | FIRST                | FOLLOW               |
+|----------------|----------------------|----------------------|
+| E -> T E'      | { (, id }            | { $, ) }             |
+| E' -> + T E'   | { +, -, ε }          | { $, ), +, - }       |
+| E' -> - T E'   |                      |                      |
+| E' -> ε        |                      |                      |
+| T -> F T'      | { (, id }            | { +, -, $, ) }       |
+| T' -> * F T'   | { *, ε }             | { +, -, $, ) }       |
+| T' -> ε        |                      |                      |
+| F -> ( E )     | { (, id }            | { *, +, -, $, ) }    |
+| F -> id        |                      |                      |
+
+## Tabela de Análise LL(1)
+
+| Não Terminal | Terminal | Produção   |
+|--------------|----------|------------|
+| E            | (        | T E'       |
+| E            | id       | T E'       |
+| E'           | +        | + T E'     |
+| E'           | -        | - T E'     |
+| E'           | $        | ε          |
+| T            | (        | F T'       |
+| T            | id       | F T'       |
+| T'           | +        | ε          |
+| T'           | -        | ε          |
+| T'           | *        | * F T'     |
+| T'           | $        | ε          |
+| F            | (        | ( E )      |
+| F            | id       | id         |
