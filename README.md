@@ -67,6 +67,7 @@ dart run bin/main.dart assets/tabela.csv assets/entrada.txt
 
 ## Exemplos
 
+
 1- **Exemplo Aceito**
 
 **Arquivo de Entrada**: `entrada.txt`
@@ -81,6 +82,7 @@ id + id * id
 ```
 Entrada aceita com sucesso.
 ```
+
 
 2- **Exemplo Rejeitado**
 
